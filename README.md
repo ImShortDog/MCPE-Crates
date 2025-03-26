@@ -1,74 +1,79 @@
-Minecraft Crate System
+**Crate System for Minecraft Bedrock**
 
-This project is a Crate System for Minecraft Bedrock Edition, allowing players to open crates and receive rewards using keys. The system utilizes the @minecraft/server and @minecraft/server-ui modules to handle crate interactions and UI elements.
-
+This is a Crate System for Minecraft Bedrock, written in JavaScript using the @minecraft/server and @minecraft/server-ui APIs. Players can open different types of crates using specific keys and receive rewards.
 Features
 
-Multiple Crate Types: Common, Uncommon, Rare, Epic, and Legendary crates.
+   + Crate Selection UI: Players interact with an Ender Chest to open a crate selection menu.
 
-Key-Based Access: Players need specific keys to open crates.
+   + Custom Crate Classes: Each crate has its own name, location, and required key.
 
-UI Selection Menu: Players can choose which crate to open via a dropdown menu.
+   + Key Checking: Players must have the required key to open a crate.
 
-Inventory Check: Ensures players have at least three empty slots before opening a crate.
+   + Inventory Slot Requirement: Requires at least 3 empty slots to prevent overflow.
 
-Custom Sound Effects: Plays sounds when interacting with crates.
+   + Custom Sounds & Messages: Audio and text feedback enhance the player experience.
 
-Reward System: Players receive randomized rewards from the crate.
+   + Reward Distribution: Players receive randomized rewards from the crate.
 
-Setup & Installation
+**This system includes five types of crates:**
 
-Ensure you have a Minecraft Bedrock world with scripting API enabled.
+   + 🟢 Uncommon Crate (uncommonkey)
 
-Install the required dependencies:
+   + 🟡 Common Crate (commonkey)
 
-import { world, system } from "@minecraft/server";
-import { ActionFormData, ModalFormData } from "@minecraft/server-ui";
+   + 🔵 Rare Crate (rarekey)
 
-Add the provided scripts to your project.
+   + 🟣 Epic Crate (epickey)
 
-Modify crate locations and key names as needed.
+   + 🟠 Legendary Crate (legendarykey)
 
-Usage
+Setup & Usage
 
-Right-click (interact) with an Ender Chest at the specified location (x: 68, y: 1, z: 30) to open the Crate Menu.
+   + Install & Configure
 
-Select a crate from the dropdown.
+        Ensure your Minecraft Bedrock world has scripting enabled.
 
-If the player has the required key and enough empty inventory slots, they will receive rewards.
+        Place this script inside your server's add-ons folder.
 
-File Structure
+   + Interacting with the Crate System
 
-/minecraft-crate-system
-│── class.js         # Crate system logic
-│── functions.js     # Utility functions (getScore, removeScore, grabCrateItems, sounds)
-│── script.js        # Main interaction and event handling
-│── README.md        # Documentation
+        Players interact with an Ender Chest (x: 68, y: 1, z: 30).
 
-Crate Configuration
+        A UI menu appears, displaying available crates and key counts.
 
-Modify the crate setup in script.js:
+        Players can select a crate and attempt to open it.
 
-const uncommonCrate = new createCrate(`Uncommon Crate`, {x: 68, y: 1, z: 28}, `uncommonkey`);
-const commonCrate = new createCrate(`Common Crate`, {x: 68, y: 1, z: 30}, `commonkey`);
-const rareCrate = new createCrate(`Rare Crate`, {x: 68, y: 1, z: 32}, `rarekey`);
-const epicCrate = new createCrate(`Epic Crate`, {x: 68, y: 1, z: 34}, `epickey`);
-const legendaryCrate = new createCrate(`Legendary Crate`, {x: 68, y: 1, z: 36}, `legendarykey`);
+   + How Rewards Work
 
-Adjust the coordinates and key names as needed.
+        If the player has a key and at least 3 empty inventory slots:
+
+            The key is removed.
+
+            Rewards are given from the crate’s loot pool.
+
+        Otherwise, an error message is displayed.
+
+**Code Overview**
+createCrate Class
+
+Handles crate interactions:
+
+   + openCrate(player): Checks conditions and gives rewards.
+
+   + hasKey(player): Verifies if the player has the required key.
+
+   + removeKey(player): Deducts a key upon opening a crate.
+
+   + giveRewards(player): Distributes rewards based on crate type.
+
+UI System
+
+   + viewCrates(player): Displays the crate selection menu using ModalFormData.
+
+   + Dropdown Options: Shows crate names along with the number of keys the player owns.
 
 Dependencies
 
-Minecraft Bedrock Edition with scripting enabled
+   + @minecraft/server
 
-@minecraft/server
-
-@minecraft/server-ui
-
-License
-
-This project is free to use and modify. Attribution is appreciated but not required.
-
-Contact
-
-For any issues or suggestions, feel free to open an Issue or create a Pull Request on GitHub!
+   + @minecraft/server-ui
