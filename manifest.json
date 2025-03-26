@@ -1,0 +1,36 @@
+{
+  "format_version": 2,
+  "header": {
+    "name": "§eCrate System",
+    "description": "§aMade by ShortymcWorty",
+    "uuid": "9cca74c4-901c-48e4-b025-89dbfeca70c3",
+    "version": [1,0,0],
+    "min_engine_version": [1,19,63]
+  },
+  "modules": [
+    {
+      "type": "data",
+      "uuid": "a055ee2e-f07c-4229-b37e-4a840477bf7e",
+      "version": [1,0,0]
+    },
+    {
+      "type": "script",
+      "language": "javascript",
+      "uuid": "540584c3-8da0-4317-a3c7-37762628e79d",
+      "version": [1,0,0],
+      "entry": "scripts/import.js"
+    }
+  ],
+  "dependencies": [
+      {
+          "module_name": "@minecraft/server",
+          "version": "2.0.0-beta"
+      },
+      {
+          "module_name": "@minecraft/server-ui",
+          "version": "2.0.0-beta"
+      }
+  ]
+}
+
+
